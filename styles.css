@@ -1,0 +1,22 @@
+/* Estilo para formatar a lista de navegação */
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Torna os itens da lista flexíveis */
+}
+
+header nav ul li {
+    margin-right: 20px; /* Espaçamento entre os itens */
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transição suave de cor ao passar o mouse */
+}
+
+header nav ul li a:hover {
+    color: #007bff; /* Cor azul quando o mouse passa por cima */
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA'Alugar - Reserva de Canoas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <img src="imagens/canoa-havaiana - Copy.jpg" alt="Canoa Havaiana">
+        <h1>VA'Alugar - Sistema de Aluguel de Canoa Havaiana</h1>
+    </header>
+    <!-- Controles de Navegação -->
+    <div id="controles-navegacao">
+        <button id="btn-processo-1">Busca e Reserva de Canoas</button>
+        <button id="btn-processo-2">Avaliação da Experiência</button>
+    </div>
+    <!-- Processo 1: Busca e Reserva -->
+    <section id="processo-1">
+        <h2>Busca e Reserva - Onde você quer remar?</h2>
+        <!-- Formulário de Busca -->
+        <form id="form-busca">
+            <label for="cidade">Informe a cidade/município:</label>
+            <input type="text" id="cidade" name="cidade" required>
+            <button type="submit">Buscar</button>
+        </form>
+        <!-- Lista de Canoas Disponíveis -->
+        <div id="lista-canoas" style="display: none;">
+            <h3>Canoas Disponíveis</h3>
+            <ul id="canoa-lista">
+                <!-- Os itens da lista serão preenchidos dinamicamente com JavaScript -->
+            </ul>
+        </div>
+        <!-- Formulário de Reserva -->
+        <form id="form-reserva" style="display: none;">
+            <h3>Reservar Canoa</h3>
+            <label for="canoa">Escolha uma canoa:</label>
+            <select id="canoa" name="canoa" required>
+                <!-- As opções do select serão preenchidas dinamicamente com JavaScript -->
+            </select>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+            <label for="data">Data da Reserva:</label>
+            <input type="date" id="data" name="data" required>
+            <button type="submit">Confirmar Reserva</button>
+        </form>
+        <!-- Confirmação da Reserva -->
+        <div id="confirma-reserva" style="display: none;">
+            <h3>Reserva Confirmada</h3>
+            <p id="reserva-info">
+                <!-- As informações da reserva serão preenchidas dinamicamente com JavaScript -->
+            </p>
+        </div>
+    </section>
+
+    <!-- Processo 2: Avaliação da Experiência -->
+    <section id="processo-2" style="display: none;">
+        <h2>Avaliação da Experiência - Como foi sua remada?</h2>
+        <!-- Formulário de Identificação -->
+        <form id="form-identificacao">
+            <label for="telefone-identificacao">Informe o telefone registrado:</label>
+            <input type="tel" id="telefone-identificacao" name="telefone-identificacao" required>
+            <button type="submit">Buscar Reservas</button>
+        </form>
+        <!-- Lista de Reservas -->
+        <div id="lista-reservas" style="display: none;">
+            <h3>Suas Reservas</h3>
+            <ul id="reserva-lista">
+                <!-- Os itens da lista serão preenchidos dinamicamente com JavaScript -->
+            </ul>
+        </div>
+        <!-- Formulário de Avaliação -->
+        <form id="form-avaliacao" style="display: none;">
+            <h3>Avaliar Reserva</h3>
+            <label for="comentario">Escreva um comentário:</label>
+            <textarea id="comentario" name="comentario" rows="4" required></textarea>
+            <label for="nota">Nota de 1 a 5:</label>
+            <input type="number" id="nota" name="nota" min="1" max="5" required>
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+        <!-- Mensagem de Agradecimento -->
+        <div id="agradecimento" style="display: none;">
+            <h3>Obrigado pela sua avaliação!</h3>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
