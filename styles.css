@@ -1,22 +1,42 @@
-/* Estilo para formatar a lista de navegação */
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Torna os itens da lista flexíveis */
-}
+/* Estilos para tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilos para os botões */
+  button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: #d6b911;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #866803;
+  }
+  
+  h1 {
+    color: #866803; /* Cinza escuro */
+  }
 
-header nav ul li {
-    margin-right: 20px; /* Espaçamento entre os itens */
-}
+  h2 {
+    color: #866803; /* Cinza escuro */
+  }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s ease; /* Transição suave de cor ao passar o mouse */
-}
-
-header nav ul li a:hover {
-    color: #007bff; /* Cor azul quando o mouse passa por cima */
-}
+  h3 {
+    color: #866803; /* Cinza escuro */
+  }

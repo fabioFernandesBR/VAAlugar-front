@@ -1,92 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VA'Alugar - Reserva de Canoas</title>
+    <title>Reserva de Canoas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Cabeçalho -->
     <header>
         <img src="imagens/canoa-havaiana - Copy.jpg" alt="Canoa Havaiana">
-        <h1>VA'Alugar - Sistema de Aluguel de Canoa Havaiana</h1>
     </header>
-    <!-- Controles de Navegação -->
-    <div id="controles-navegacao">
-        <button id="btn-processo-1">Busca e Reserva de Canoas</button>
-        <button id="btn-processo-2">Avaliação da Experiência</button>
-    </div>
-    <!-- Processo 1: Busca e Reserva -->
-    <section id="processo-1">
-        <h2>Busca e Reserva - Onde você quer remar?</h2>
-        <!-- Formulário de Busca -->
-        <form id="form-busca">
-            <label for="cidade">Informe a cidade/município:</label>
-            <input type="text" id="cidade" name="cidade" required>
-            <button type="submit">Buscar</button>
-        </form>
-        <!-- Lista de Canoas Disponíveis -->
-        <div id="lista-canoas" style="display: none;">
-            <h3>Canoas Disponíveis</h3>
-            <ul id="canoa-lista">
-                <!-- Os itens da lista serão preenchidos dinamicamente com JavaScript -->
-            </ul>
-        </div>
-        <!-- Formulário de Reserva -->
-        <form id="form-reserva" style="display: none;">
-            <h3>Reservar Canoa</h3>
-            <label for="canoa">Escolha uma canoa:</label>
-            <select id="canoa" name="canoa" required>
-                <!-- As opções do select serão preenchidas dinamicamente com JavaScript -->
-            </select>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" required>
-            <label for="data">Data da Reserva:</label>
-            <input type="date" id="data" name="data" required>
-            <button type="submit">Confirmar Reserva</button>
-        </form>
-        <!-- Confirmação da Reserva -->
-        <div id="confirma-reserva" style="display: none;">
-            <h3>Reserva Confirmada</h3>
-            <p id="reserva-info">
-                <!-- As informações da reserva serão preenchidas dinamicamente com JavaScript -->
-            </p>
-        </div>
-    </section>
 
-    <!-- Processo 2: Avaliação da Experiência -->
-    <section id="processo-2" style="display: none;">
-        <h2>Avaliação da Experiência - Como foi sua remada?</h2>
-        <!-- Formulário de Identificação -->
-        <form id="form-identificacao">
-            <label for="telefone-identificacao">Informe o telefone registrado:</label>
-            <input type="tel" id="telefone-identificacao" name="telefone-identificacao" required>
-            <button type="submit">Buscar Reservas</button>
-        </form>
-        <!-- Lista de Reservas -->
-        <div id="lista-reservas" style="display: none;">
-            <h3>Suas Reservas</h3>
-            <ul id="reserva-lista">
-                <!-- Os itens da lista serão preenchidos dinamicamente com JavaScript -->
-            </ul>
+    <main id="content">
+        <h1>Sistema de Reserva de Canoas</h1>
+        <div id="criacao-reserva" class="step">
+            <!-- Passo 1: Busca de canoas por cidade -->
+            <h2>Processo 1: Criação de uma reserva</h2>
+            <h3>Passo 1: Busca de Canoas por Cidade</h3>
+            <label for="cidade">Informe o município:</label>
+            <input type="text" id="cidade" placeholder="Digite o município">
+            <button id="buscar-canoas">Buscar Canoas</button>
+            <div id="lista-canoas"></div>
+
+            <!-- Passo 2: Preenchimento de dados para reserva -->
+            <h3>Passo 2: Preenchimento de Dados para Reserva</h3>
+            <form id="form-reserva">
+                <label for="numero-canoa">Número da Canoa:</label>
+                <input type="number" id="numero-canoa" name="numero-canoa" required>
+                <label for="telefone">Telefone:</label>
+                <input type="number" id="telefone" name="telefone" required>
+                <label for="data">Data:</label>
+                <input type="text" id="data" name="data" required>
+                <button type="submit">Reservar</button>
+            </form>
         </div>
-        <!-- Formulário de Avaliação -->
-        <form id="form-avaliacao" style="display: none;">
-            <h3>Avaliar Reserva</h3>
-            <label for="comentario">Escreva um comentário:</label>
-            <textarea id="comentario" name="comentario" rows="4" required></textarea>
-            <label for="nota">Nota de 1 a 5:</label>
-            <input type="number" id="nota" name="nota" min="1" max="5" required>
-            <button type="submit">Enviar Avaliação</button>
-        </form>
-        <!-- Mensagem de Agradecimento -->
-        <div id="agradecimento" style="display: none;">
-            <h3>Obrigado pela sua avaliação!</h3>
+
+        <div id="avaliacao-experiencia" class="step">
+            <!-- Passo 1: Listagem de reservas por telefone -->
+            <h2>Processo 2: Avaliação da Experiência</h2>
+            <h3>Passo 1: Listagem de Reservas por Telefone</h3>
+            <label for="telefone-avaliacao">Informe seu telefone:</label>
+            <input type="text" id="telefone-avaliacao" placeholder="Digite seu telefone">
+            <button id="buscar-reservas">Buscar Reservas</button>
+            <div id="lista-reservas"></div>
+
+            <!-- Passo 2: Preenchimento de avaliação -->
+            <h3>Passo 2: Preenchimento de Avaliação</h3>
+            <label for="id-reserva">ID da Reserva:</label>
+            <input type="number" id="id_reserva" placeholder="Numero da Reserva">
+            <label for="comentario">Comentário:</label>
+            <input type="text" id="comentario" placeholder="Digite seu comentário">
+            <label for="avaliacao">Avaliação (1 a 5):</label>
+            <input type="number" id="avaliacao" min="1" max="5" placeholder="Digite sua avaliação">
+            <button id="enviar-avaliacao">Enviar Avaliação</button>
         </div>
-    </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
