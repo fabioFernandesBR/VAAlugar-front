@@ -78,16 +78,17 @@ buscarCanoasBtn.addEventListener('click', function() {
 });
 // Função para enviar dados para efetuar a reserva - método POST
 const postReserva = (numeroCanoa, telefone, data) => {
+    const formData = new FormData();
+    formData.append('canoa', numeroCanoa);
+    formData.append('data', data);
+    formData.append('usuario', telefone);
+    
     fetch('http://127.0.0.1:5000/reserva', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'accept': 'application/json', // Adiciona o cabeçalho 'accept'
         },
-        body: JSON.stringify({
-            canoa: numeroCanoa,
-            data: data,
-            usuario: telefone
-        })
+        body: formData // Usa FormData em vez de JSON.stringify
     })
     .then(response => response.json())
     .then(data => {
