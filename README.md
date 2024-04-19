@@ -22,3 +22,11 @@ Processos:
     -Lista de Reservas: Para exibir todas as reservas feitas com o telefone informado.
     -Formulário de Avaliação: Para o usuário escrever um comentário e dar uma nota para a reserva selecionada.
     -Mensagem de Agradecimento: Para confirmar que a avaliação foi registrada com sucesso.
+
+Para visualizar o front end, abrir o arquivo index.html com o browser. Este arquivo html faz referência a um arquivo CSS e a um arquivo com código em Javascript. Este código JS por sua vez faz requisições via HTTP à API VA'Alugar. 
+
+A API VA'Alugar deve estar rodando localmente em http://127.0.0.1:5000/. Toda a API está disponível no seguinte repositório público GIT Hub: https://github.com/fabioFernandesBR/VAAlugar-back.git
+
+
+
+

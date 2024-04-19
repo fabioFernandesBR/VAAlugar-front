@@ -22,7 +22,7 @@ const criarTabelaCanoas = (dadosCanoas) => {
     // Cria o cabeçalho da tabela
     const cabecalho = tabela.createTHead();
     const linhaCabecalho = cabecalho.insertRow();
-    ['ID', 'Nome', 'Dono', 'Local', 'Telefone', 'Tipo', 'Selecionar'].forEach((item) => {
+    ['ID da canoa', 'Nome', 'Tipo', 'Estado', 'Município','Bairro','Referencia','Dono','Telefone', 'Selecionar'].forEach((item) => {
         const th = document.createElement('th');
         th.textContent = item;
         linhaCabecalho.appendChild(th);
@@ -32,7 +32,7 @@ const criarTabelaCanoas = (dadosCanoas) => {
     const corpo = tabela.createTBody();
     dadosCanoas.forEach(canoa => {
         const linha = corpo.insertRow();
-        ['id', 'nome', 'dono', 'local', 'telefone', 'tipo'].forEach((chave) => {
+        ['id', 'nome', 'tipo', 'estado', 'municipio', 'bairro', 'referencia','dono','telefone'].forEach((chave) => {
             const celula = linha.insertCell();
             celula.textContent = canoa[chave];
         });
@@ -205,24 +205,26 @@ const avaliacaoInput = document.getElementById('avaliacao');
 
 // Função para enviar dados para efetuar comentario - método PUT
 const enviarAtualizacaoComentarioAvaliacao = (idReserva, comentario, avaliacao) => {
+    const formData = new FormData();
+    formData.append('avaliacao', avaliacao);
+    formData.append('comentario', comentario);
+    formData.append('id_reserva', idReserva);
+
     fetch('http://127.0.0.1:5000/comentario', {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'accept': 'application/json', // Adiciona o cabeçalho 'accept'
         },
-        body: JSON.stringify({
-            avaliacao: avaliacao,
-            comentario: comentario,
-            id_reserva: idReserva
-        })
+        body: formData // Usa FormData em vez de JSON.stringify
     })
     .then(response => response.json())
     .then(data => {
         // Exibe a confirmação de reserva na página
         alert(`Reserva atualizada com sucesso! ID da reserva: ${data['id-reserva']}`);
     })
-    .catch(error => console.error('Erro ao fazer reserva:', error));
+    .catch(error => console.error('Erro ao atualizar reserva:', error));
 };
+
 
 
 // Captura o elemento do botão "Enviar Avaliação"
