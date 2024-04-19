@@ -16,6 +16,16 @@ const criarTabelaCanoas = (dadosCanoas) => {
     // Limpa a lista de canoas anterior, se houver
     listaCanoasDiv.innerHTML = '';
 
+    // Verifica se a resposta da API contém dados
+    if (dadosCanoas.length === 0) {
+                
+        // Cria um aviso de que nenhum objeto foi encontrado
+        const aviso = document.createElement('p');
+        aviso.textContent = 'Nenhum objeto encontrado na pesquisa.';
+        listaCanoasDiv.appendChild(aviso);
+        return; // Encerra a execução da função
+    }
+
     // Cria uma tabela
     const tabela = document.createElement('table');
 
@@ -63,19 +73,34 @@ buscarCanoasBtn.addEventListener('click', function() {
     
     // Envia uma solicitação para a API para buscar as canoas por cidade
     fetch(`http://127.0.0.1:5000/por-municipio?municipio=${cidade}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Nenhuma canoa encontrada nesta cidade.');
+            }
+            return response.json();
+        })
         .then(data => {
-            console.log(data); // Alterado para imprimir os dados recebidos da API
+            console.log(data);
             criarTabelaCanoas(data.canoas);
         })
-        .catch(error => console.error('Erro ao buscar canoas:', error));
+        .catch(error => {
+            console.error('Erro ao buscar canoas:', error.message);
+            // Limpa a lista de canoas anterior, se houver
+            listaCanoasDiv.innerHTML = '';
 
-
-
-
-
-    
+            // Cria um aviso de que nenhuma canoa foi encontrada
+            const aviso = document.createElement('p');
+            aviso.textContent = 'Nenhuma canoa encontrada nesta cidade.';
+            listaCanoasDiv.appendChild(aviso);
+        });
 });
+
+
+
+
+
+
+
 // Função para enviar dados para efetuar a reserva - método POST
 const postReserva = (numeroCanoa, telefone, data) => {
     const formData = new FormData();
@@ -183,15 +208,30 @@ buscarReservasBtn.addEventListener('click', function() {
     
     // Envia uma solicitação para a API para buscar as reservas por telefone
     fetch(`http://127.0.0.1:5000/reserva-telefone?telefone=${telefone}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); // Alterado para imprimir os dados recebidos da API
-            // Limpa a lista de reservas anterior, se houver
-            criarTabelaReservas(data.reservas)
-
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Nenhuma reserva encontrada para este telefone.');
+            }
+            return response.json();
         })
-        .catch(error => console.error('Erro ao buscar reservas:', error));
+        .then(data => {
+            console.log(data);
+            // Limpa a lista de reservas anterior, se houver
+            listaReservasDiv.innerHTML = '';
+            criarTabelaReservas(data.reservas);
+        })
+        .catch(error => {
+            console.error('Erro ao buscar reservas:', error.message);
+            // Limpa a lista de reservas anterior, se houver
+            listaReservasDiv.innerHTML = '';
+
+            // Cria um aviso de que nenhuma reserva foi encontrada
+            const aviso = document.createElement('p');
+            aviso.textContent = 'Nenhuma reserva encontrada para este telefone.';
+            listaReservasDiv.appendChild(aviso);
+        });
 });
+
 
 
 
